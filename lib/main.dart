@@ -148,14 +148,16 @@ class EbayItem {
   final String itemId;
   final String itemTitle;
   final Object price;
+  final String condition;
 
-  EbayItem({this.itemId, this.itemTitle, this.price});
+  EbayItem({this.itemId, this.itemTitle, this.price, this.condition});
 
   factory EbayItem.fromJson(Map<String, dynamic> json) {
     return EbayItem(
       itemId: json['itemId'],
       itemTitle: json['title'],
       price: json['price'],
+      condition: json['condition'],
     );
   }
 }
@@ -200,7 +202,7 @@ class ItemDetailsPage extends StatelessWidget {
               ],
             ),
           ),),
-
+          Padding(padding: EdgeInsets.all(20.0), child: Text("Condition: " + item.condition),),
         ],
       ),
     ),
