@@ -44,11 +44,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: customSearchBar,
         actions: <Widget>[
           IconButton(
+            key: Key('searchButton'),
             onPressed: () {
               setState(() {
                 if(this.customIcon.icon == Icons.search) {
                   this.customIcon = Icon(Icons.close);
                   this.customSearchBar = TextField(
+                    key: Key('searchBar'),
                     textInputAction: TextInputAction.go,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -84,12 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _listView(BuildContext context){
 
     return ListView.builder(
+      key: Key('listView'),
       itemCount: queryCount,
       itemBuilder: (context, index) {
         EbayItem item = EbayItem.fromJson(itemList[index]);
         Price price = Price.fromJson(item.price);
         return ListTile(
           title: Text(item.itemTitle.toString()),
+          key: Key('listTile#$index'),
           onTap: () {
             Navigator.push(
               context,
@@ -188,21 +192,21 @@ class ItemDetailsPage extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Route"),
+        title: Text("Item Details"),
       ),
       body: Center(
         child: Column(
         children: <Widget>[
-          Padding(padding: EdgeInsets.all(20.0), child: Text(item.itemTitle),),
+          Padding(padding: EdgeInsets.all(20.0), child: Text(item.itemTitle, key: Key('itemTitleText'),),),
           Padding(padding: EdgeInsets.all(20.0),child: Center(
             child: Row(
               children: <Widget>[
-                Center(child: Text(price.value)),
-                Center(child: Text(price.currency))
+                Center(child: Text(price.value, key: Key('itemValueText'),)),
+                Center(child: Text(price.currency, key: Key('itemCurrencyText'),))
               ],
             ),
           ),),
-          Padding(padding: EdgeInsets.all(20.0), child: Text("Condition: " + item.condition),),
+          Padding(padding: EdgeInsets.all(20.0), child: Text("Condition: " + item.condition, key: Key('itemConditionText'),),),
         ],
       ),
     ),
