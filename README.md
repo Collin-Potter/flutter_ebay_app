@@ -4,7 +4,7 @@ Flutter application simulating eBay&#x27;s browsing experience
 
 ## Requirements being tested
 
-- Proper search functionlity
+- Proper search functionality
 - Infinite scrolling listview (until out of items resulting in query)
 - Item detail page is displayed upon clicking individual list items which includes extra information of item price.
 
